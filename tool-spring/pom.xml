@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>common-tool</artifactId>
+        <groupId>com.yee</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>tool-spring</artifactId>
+    <name>tool-spring</name>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.yee</groupId>
+            <artifactId>tool-base</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.ftl</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+        <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
+        <finalName>tool-spring</finalName>
+    </build>
+</project>

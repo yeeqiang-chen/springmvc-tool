@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.springframework:spring-web-portlet:A:3.0.1.RELEASE-A">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web-portlet/3.0.1.RELEASE-A/spring-web-portlet-3.0.1.RELEASE-A-A.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web-portlet/3.0.1.RELEASE-A/spring-web-portlet-3.0.1.RELEASE-A-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web-portlet/3.0.1.RELEASE-A/spring-web-portlet-3.0.1.RELEASE-A-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

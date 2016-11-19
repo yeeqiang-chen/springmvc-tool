@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+     <!-- 定时任务定时器 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	    <property name="triggers">
+	         <list>
+	         		<!-- 每月15日定时执行FOC季航班计划数据 -->
+	               <ref bean="FocQuarterPlanMonthTrigger"></ref>
+	               <!-- 每日凌晨1点执行同步机场信息 -->
+	               <ref bean="SysAirportDayTrigger"></ref>
+	         </list>
+	    </property>
+	    <property name="autoStartup" value="true"/>
+	</bean>
+	<!--每月15日需要执行的任务 -->
+	<bean id="FocQuarterPlanMonthTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	   <property name="jobDetail" ref="JobDetailMonth" />
+	   <property name="cronExpression" value="34 21 1  15 * ?"/>  <!--每个月15日 1点执行 -->
+	</bean>
+	
+	<!--每月15日需要执行的任务 -->
+	<bean id="JobDetailMonth" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> <!--注入类 -->
+	    <property name="targetObject" ref="QuartzJob"/>  <!--注入业务类 -->
+	    <property name="targetMethod" value="executeMonth"/>  <!--注入业务类方法名 -->
+	    <property name="concurrent" value="true"/>  <!--并发执行 -->
+	</bean>
+	
+	<!-- 每天执行一次同步 -->
+	<bean id="SysAirportDayTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	   <property name="jobDetail" ref="JobDetailDay" />
+	   <property name="cronExpression" value="0 0 1 * * ?"/>  <!--每日 1点执行 -->
+	</bean>
+	
+	<!--每日需要执行的任务 -->
+	<bean id="JobDetailDay" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> <!--注入类 -->
+	    <property name="targetObject" ref="QuartzJob"/>  <!--注入业务类 -->
+	    <property name="targetMethod" value="executeDay"/>  <!--注入业务类方法名 -->
+	    <property name="concurrent" value="true"/>  <!--并发执行 -->
+	</bean>
+	<!-- 执行定时任务工具类 -->
+	<bean id="QuartzJob" class="org.mis_mcs.quartz.QuartzUtils"></bean>
+ </beans>
