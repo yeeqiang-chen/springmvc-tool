@@ -65,11 +65,11 @@ public class Employee {
         this.address = address;
     }
 
-    public Integer getSeq() {
+    public Integer getId() {
         return id;
     }
 
-    public void setSeq(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

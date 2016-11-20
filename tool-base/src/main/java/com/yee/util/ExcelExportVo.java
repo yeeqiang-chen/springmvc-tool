@@ -1,7 +1,7 @@
 /*
 FileName: ExcelExportVo
 
-Function Description: excelµ¼³öÀà
+Function Description: excelå¯¼å‡ºç±»
 
 Author: yiqiang-Chen
 Date: 2016-11-19 17:00
@@ -17,27 +17,27 @@ import java.util.Collection;
 public class ExcelExportVo {
 
     /**
-     * ±í¸ñ±êÌâÃû
+     * è¡¨æ ¼æ ‡é¢˜å
      */
     private String title;
 
     /**
-     * µ¼³ö±í¸ñÁĞÃûÊı×é
+     * å¯¼å‡ºè¡¨æ ¼åˆ—åæ•°ç»„
      */
     private String[] headers;
 
     /**
-     * µ¼³öÊµÌå×Ö¶ÎÊı×é
+     * å¯¼å‡ºå®ä½“å­—æ®µæ•°ç»„
      */
     private String[] fields;
 
     /**
-     * Êı¾İ¼¯ºÏ
+     * æ•°æ®é›†åˆ
      */
     private Collection<?> dataset;
 
     /**
-     * ĞèÒªµ¼³öµÄÒµÎñÊµÌåÀàĞÍ
+     * éœ€è¦å¯¼å‡ºçš„ä¸šåŠ¡å®ä½“ç±»å‹
      */
     private Class<?> clazz;
 

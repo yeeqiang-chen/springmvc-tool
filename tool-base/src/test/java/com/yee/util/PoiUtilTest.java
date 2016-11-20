@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +51,7 @@ public class PoiUtilTest {
     public void after() throws Exception {
         endTimeMillis = System.currentTimeMillis();
         costTimeMillis = endTimeMillis - startTimeMillis;
-        System.out.println("Cost : " + costTimeMillis);
+        System.out.println("Cost : " + costTimeMillis / 1000 + " s");
         employeeList.clear();
     }
 
@@ -63,10 +65,14 @@ public class PoiUtilTest {
         exportVo.setDataset(employeeList);
         exportVo.setClazz(Employee.class);
         exportVoList.add(exportVo);
-        response.setContentType("application/msexcel;charset=utf-8");
-        response.setHeader("Content-disposition", "attachment; filename=" + sheetName + ".xls");
+        exportVoList.add(exportVo);
+//        response.setContentType("application/msexcel;charset=utf-8");
+//        response.setHeader("Content-disposition", "attachment; filename=" + sheetName + ".xls");
         try {
-            PoiUtil.exportExcel(sheetName, exportVoList, response.getOutputStream(), "yyyy-MM-dd");
+            FileOutputStream xlsFile = new FileOutputStream("E:\\"+ sheetName + ".xls");
+            PoiUtil.exportExcel(sheetName, exportVoList, xlsFile, "yyyy-MM-dd");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -17,11 +17,8 @@
     <file url="file://$PROJECT_DIR$/src/main/resources/spring/spring-quartz.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/spring/spring-security.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tool-base" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tool-base/src/main/java/com/yee/util/ExcelExportVo.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/tool-base/src/main/java/com/yee/util/PoiUtil.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/tool-base/src/main/java/com/yee/util/PoiVo.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/tool-base/src/test/java/yee/util/ExcelExportVo.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/tool-base/src/test/java/yee/util/PoiUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/tool-base/src/main/java/com/yee/util/ExcelExportVo.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tool-base/src/main/java/com/yee/util/PoiUtil.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tool-config" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tool-spring" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tool-web" charset="UTF-8" />
