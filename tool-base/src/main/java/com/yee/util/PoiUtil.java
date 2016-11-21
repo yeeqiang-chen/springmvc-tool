@@ -12,10 +12,13 @@ Copyright @ YEE.All rights reserved.
 package com.yee.util;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.CellRangeAddress;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.RegionUtil;
 
 import java.io.OutputStream;
 import java.lang.reflect.Method;
@@ -28,7 +31,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PoiUtil {
-	
+
 	private static String role = "^.([0-9]*)";
 	private static Pattern pattern = Pattern.compile(role);
 
@@ -43,7 +46,7 @@ public class PoiUtil {
 	 * @param pattern
 	 *            如果有时间数据，设定输出格式。默认为"yyyy-MM-dd"
 	 * @throws Exception
-	 * @author chenyiqiang(004205)
+	 * @author chenyiqiang
 	 * @date 2016年8月18日
 	 */
 	@SuppressWarnings("deprecation")
@@ -102,8 +105,10 @@ public class PoiUtil {
 				calcAndSetRowHeigt(row,datas.get(i).getTitle());
 				cell.setCellStyle(styleHeader);
 
-                // 合并单元格(四个参数分别是:起始行,起始列,结束行,结束列)
-				sheet.addMergedRegion(new CellRangeAddress(headRowIndex, headRowIndex, 0, datas.get(i).getHeaders().length - 1));
+				// 合并单元格(四个参数分别是:起始行,起始列,结束行,结束列)
+				CellRangeAddress cellRangeAddress = new CellRangeAddress(headRowIndex, headRowIndex, 0, datas.get(i).getHeaders().length - 1);
+				sheet.addMergedRegion(cellRangeAddress);
+				setRegionBorder(HSSFCellStyle.BORDER_THIN,cellRangeAddress,sheet,workbook);
 
 				// 产生表格表头行
 				row = sheet.createRow(headRowIndex + 1);
@@ -173,7 +178,7 @@ public class PoiUtil {
 				// 获取当前表格行数
 				int currentRowNum = sheet.getLastRowNum();
 				// 当前行数加一个空白行,继续打印后面的表格
-				headRowIndex = currentRowNum + 1;
+				headRowIndex = currentRowNum + 2;
 			}
 		}
 		// 写出表格
@@ -187,14 +192,27 @@ public class PoiUtil {
 		}
 	}
 
+	/**
+	 * 设置合并后单元格边框
+	 * @param border
+	 * @param region
+	 * @param sheet
+	 * @param wb
+	 */
+	private static void setRegionBorder(int border, CellRangeAddress region, Sheet sheet,Workbook wb){
+		RegionUtil.setBorderBottom(border,region, sheet, wb);
+		RegionUtil.setBorderLeft(border,region, sheet, wb);
+		RegionUtil.setBorderRight(border,region, sheet, wb);
+		RegionUtil.setBorderTop(border,region, sheet, wb);
 
+	}
 	/**
 	 * 将数字转为字符串
 	 * @param value
 	 * @return
 	 */
 	public static String checkNum(String value){
-	   Matcher isNum = pattern.matcher(value);
+		Matcher isNum = pattern.matcher(value);
 		if(isNum.matches()){
 			BigDecimal decimal = new BigDecimal(value);
 			return decimal.toString();
