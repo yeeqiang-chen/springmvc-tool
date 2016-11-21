@@ -1,7 +1,7 @@
 /*
 FileName: PoiUtil
 
-Function Description: excelµ¼³ö¹¤¾ßÀà
+Function Description: excelå¯¼å‡ºå·¥å…·ç±»
 
 Author: yiqiang-Chen
 Date: 2016-11-19 17:10
@@ -33,28 +33,28 @@ public class PoiUtil {
 	private static Pattern pattern = Pattern.compile(role);
 
 	/**
-	 * µ¼³öEXCELÎÄµµ
+	 * å¯¼å‡ºEXCELæ–‡æ¡£
 	 * @param sheetName
-	 *            sheetÃû³Æ
+	 *            sheetåç§°
 	 * @param datas
-	 *            ĞèÒªµ¼³öµÄÊı¾İ±í¸ñ
+	 *            éœ€è¦å¯¼å‡ºçš„æ•°æ®è¡¨æ ¼
 	 * @param out
-	 *            Êä³öÁ÷
+	 *            è¾“å‡ºæµ
 	 * @param pattern
-	 *            Èç¹ûÓĞÊ±¼äÊı¾İ£¬Éè¶¨Êä³ö¸ñÊ½¡£Ä¬ÈÏÎª"yyyy-MM-dd"
+	 *            å¦‚æœæœ‰æ—¶é—´æ•°æ®ï¼Œè®¾å®šè¾“å‡ºæ ¼å¼ã€‚é»˜è®¤ä¸º"yyyy-MM-dd"
 	 * @throws Exception
 	 * @author chenyiqiang(004205)
-	 * @date 2016Äê8ÔÂ18ÈÕ
+	 * @date 2016å¹´8æœˆ18æ—¥
 	 */
 	@SuppressWarnings("deprecation")
 	public static void exportExcel(String sheetName, ArrayList<ExcelExportVo> datas, OutputStream out, String pattern) throws Exception {
-		// ÉùÃ÷Ò»¸ö¹¤×÷±¡
+		// å£°æ˜ä¸€ä¸ªå·¥ä½œè–„
 		HSSFWorkbook workbook = new HSSFWorkbook();
-		// Éú³ÉÒ»¸ö±í¸ñ
+		// ç”Ÿæˆä¸€ä¸ªè¡¨æ ¼
 		HSSFSheet sheet = workbook.createSheet(sheetName);
-		// ÉùÃ÷Ò»¸ö»­Í¼µÄ¶¥¼¶¹ÜÀíÆ÷
+		// å£°æ˜ä¸€ä¸ªç”»å›¾çš„é¡¶çº§ç®¡ç†å™¨
 		HSSFPatriarch patriarch = sheet.createDrawingPatriarch();
-		// ÉèÖÃ±í¸ñÄ¬ÈÏÁĞ¿í¶ÈÎª15¸ö×Ö½Ú
+		// è®¾ç½®è¡¨æ ¼é»˜è®¤åˆ—å®½åº¦ä¸º15ä¸ªå­—èŠ‚
 		sheet.setDefaultColumnWidth((short) 15);
 
 		HSSFCellStyle styleData = workbook.createCellStyle();
@@ -82,33 +82,33 @@ public class PoiUtil {
 		styleHeader.setWrapText(true);
 
 		HSSFFont font = workbook.createFont();
-		font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);// ¼Ó´Ö
+		font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);// åŠ ç²—
 		styleHeader.setFont(font);
 	      /*
-	      // ¶¨Òå×¢ÊÍµÄ´óĞ¡ºÍÎ»ÖÃ,Ïê¼ûÎÄµµ
+	      // å®šä¹‰æ³¨é‡Šçš„å¤§å°å’Œä½ç½®,è¯¦è§æ–‡æ¡£
 	      HSSFComment comment = patriarch.createComment(new HSSFClientAnchor(0, 0, 0, 0, (short) 4, 2, (short) 6, 5));
-	      // ÉèÖÃ×¢ÊÍÄÚÈİ
-	      comment.setString(new HSSFRichTextString("¿ÉÒÔÔÚPOIÖĞÌí¼Ó×¢ÊÍ£¡"));
-	      // ÉèÖÃ×¢ÊÍ×÷Õß£¬µ±Êó±êÒÆ¶¯µ½µ¥Ôª¸ñÉÏÊÇ¿ÉÒÔÔÚ×´Ì¬À¸ÖĞ¿´µ½¸ÃÄÚÈİ.
+	      // è®¾ç½®æ³¨é‡Šå†…å®¹
+	      comment.setString(new HSSFRichTextString("å¯ä»¥åœ¨POIä¸­æ·»åŠ æ³¨é‡Šï¼"));
+	      // è®¾ç½®æ³¨é‡Šä½œè€…ï¼Œå½“é¼ æ ‡ç§»åŠ¨åˆ°å•å…ƒæ ¼ä¸Šæ˜¯å¯ä»¥åœ¨çŠ¶æ€æ ä¸­çœ‹åˆ°è¯¥å†…å®¹.
 	      comment.setAuthor("lenovo");
 	      */
 		if (CollectionUtils.isNotEmpty(datas)) {
 			int headRowIndex = 0;
 			for (int i = 0, size = datas.size(); i < size; i++) {
-				// ²úÉú±í¸ñ±êÌâĞĞ
+				// äº§ç”Ÿè¡¨æ ¼æ ‡é¢˜è¡Œ
 				HSSFRow row = sheet.createRow(headRowIndex);
 				HSSFCell cell = row.createCell(0);
 				cell.setCellValue(new HSSFRichTextString(datas.get(i).getTitle() == null ? "" : datas.get(i).getTitle()));
 				calcAndSetRowHeigt(row,datas.get(i).getTitle());
 				cell.setCellStyle(styleHeader);
 
-                // ºÏ²¢µ¥Ôª¸ñ(ËÄ¸ö²ÎÊı·Ö±ğÊÇ:ÆğÊ¼ĞĞ,ÆğÊ¼ÁĞ,½áÊøĞĞ,½áÊøÁĞ)
+                // åˆå¹¶å•å…ƒæ ¼(å››ä¸ªå‚æ•°åˆ†åˆ«æ˜¯:èµ·å§‹è¡Œ,èµ·å§‹åˆ—,ç»“æŸè¡Œ,ç»“æŸåˆ—)
 				sheet.addMergedRegion(new CellRangeAddress(headRowIndex, headRowIndex, 0, datas.get(i).getHeaders().length - 1));
 
-				// ²úÉú±í¸ñ±íÍ·ĞĞ
+				// äº§ç”Ÿè¡¨æ ¼è¡¨å¤´è¡Œ
 				row = sheet.createRow(headRowIndex + 1);
 
-				// Ò»¹²¶àÉÙÁĞ
+				// ä¸€å…±å¤šå°‘åˆ—
 				int columnSize = datas.get(i).getHeaders().length;
 				for (short j = 0; j < columnSize; j++) {
 					cell = row.createCell(j);
@@ -117,7 +117,7 @@ public class PoiUtil {
 					cell.setCellStyle(styleHeader);
 				}
 
-				// ±éÀú¼¯ºÏÊı¾İ£¬²úÉúÊı¾İĞĞ
+				// éå†é›†åˆæ•°æ®ï¼Œäº§ç”Ÿæ•°æ®è¡Œ
 				Iterator<?> it = datas.get(i).getDataset().iterator();
 				int index = headRowIndex + 1;
 				while (it.hasNext()) {
@@ -129,7 +129,7 @@ public class PoiUtil {
 						cell.setCellStyle(styleData);
 						String field = datas.get(i).getFields()[k];
 						String methodName = "get";
-						// ÏµÍ³ÖĞÓĞĞ©ÊôĞÔÃ»ÓĞÑÏ¸ñ°´ÕÕjavabean±àĞ´¹æ·¶,ÀıÈç:cName ---> getcName
+						// ç³»ç»Ÿä¸­æœ‰äº›å±æ€§æ²¡æœ‰ä¸¥æ ¼æŒ‰ç…§javabeanç¼–å†™è§„èŒƒ,ä¾‹å¦‚:cName ---> getcName
 						if (isUpperCase(field)) {
 							methodName += field.substring(0, 1).toLowerCase()+ field.substring(1);
 						} else {
@@ -138,7 +138,7 @@ public class PoiUtil {
 						try {
 							Method getMethod = datas.get(i).getClazz().getMethod(methodName,new Class[] {});
 							Object value = getMethod.invoke(object, new Object[]{});
-							// ÅĞ¶ÏÖµµÄÀàĞÍºó½øĞĞÇ¿ÖÆÀàĞÍ×ª»»
+							// åˆ¤æ–­å€¼çš„ç±»å‹åè¿›è¡Œå¼ºåˆ¶ç±»å‹è½¬æ¢
 							String textValue;
 							if (value instanceof Date) {
 								Date date = (Date) value;
@@ -146,20 +146,20 @@ public class PoiUtil {
 								textValue = sdf.format(date);
 								cell.setCellValue(textValue);
 							}  else if (value instanceof byte[]) {
-								// ÓĞÍ¼Æ¬Ê±£¬ÉèÖÃĞĞ¸ßÎª60px;
+								// æœ‰å›¾ç‰‡æ—¶ï¼Œè®¾ç½®è¡Œé«˜ä¸º60px;
 								row.setHeightInPoints(60);
-								// ÉèÖÃÍ¼Æ¬ËùÔÚÁĞ¿í¶ÈÎª80px,×¢ÒâÕâÀïµ¥Î»µÄÒ»¸ö»»Ëã
+								// è®¾ç½®å›¾ç‰‡æ‰€åœ¨åˆ—å®½åº¦ä¸º80px,æ³¨æ„è¿™é‡Œå•ä½çš„ä¸€ä¸ªæ¢ç®—
 								sheet.setColumnWidth(index, (short) (35.7 * 80));
 								byte[] bsValue = (byte[]) value;
 								HSSFClientAnchor anchor = new HSSFClientAnchor(0, 0,1023, 255, (short) 6, index, (short) 6, index);
 								anchor.setAnchorType(2);
 								patriarch.createPicture(anchor, workbook.addPicture(bsValue, HSSFWorkbook.PICTURE_TYPE_JPEG));
 							} else{
-								// ÆäËüÊı¾İÀàĞÍ¶¼µ±×÷×Ö·û´®¼òµ¥´¦Àí
+								// å…¶å®ƒæ•°æ®ç±»å‹éƒ½å½“ä½œå­—ç¬¦ä¸²ç®€å•å¤„ç†
 								textValue = value == null ? "" : value.toString();
 								cell.setCellValue(textValue);
 							}
-							// ×ÔÊÊÓ¦ÁĞ¿í
+							// è‡ªé€‚åº”åˆ—å®½
 							for (short m = 0; m < columnSize; m++) {
 								sheet.autoSizeColumn(m);
 							}
@@ -170,13 +170,13 @@ public class PoiUtil {
 						}
 					}
 				}
-				// »ñÈ¡µ±Ç°±í¸ñĞĞÊı
+				// è·å–å½“å‰è¡¨æ ¼è¡Œæ•°
 				int currentRowNum = sheet.getLastRowNum();
-				// µ±Ç°ĞĞÊı¼ÓÒ»¸ö¿Õ°×ĞĞ,¼ÌĞø´òÓ¡ºóÃæµÄ±í¸ñ
+				// å½“å‰è¡Œæ•°åŠ ä¸€ä¸ªç©ºç™½è¡Œ,ç»§ç»­æ‰“å°åé¢çš„è¡¨æ ¼
 				headRowIndex = currentRowNum + 1;
 			}
 		}
-		// Ğ´³ö±í¸ñ
+		// å†™å‡ºè¡¨æ ¼
 		try {
 			workbook.write(out);
 			out.close();
@@ -189,7 +189,7 @@ public class PoiUtil {
 
 
 	/**
-	 * ½«Êı×Ö×ªÎª×Ö·û´®
+	 * å°†æ•°å­—è½¬ä¸ºå­—ç¬¦ä¸²
 	 * @param value
 	 * @return
 	 */
@@ -203,13 +203,13 @@ public class PoiUtil {
 	}
 
 	/**
-	 * ÅĞ¶Ï×Ö·û´®Ê××ÖÄ¸ÊÇ·ñ´óĞ´
+	 * åˆ¤æ–­å­—ç¬¦ä¸²é¦–å­—æ¯æ˜¯å¦å¤§å†™
 	 * @param word
 	 * @return
-	 * 			true : ´óĞ´
-	 * 			false :Ğ¡Ğ´
+	 * 			true : å¤§å†™
+	 * 			false :å°å†™
 	 * @author chenyiqiang
-	 * @date 2016Äê11ÔÂ19ÈÕ
+	 * @date 2016å¹´11æœˆ19æ—¥
 	 */
 	private static boolean isUpperCase(String word) {
 		Character firstLetter = word.charAt(0);
@@ -217,11 +217,11 @@ public class PoiUtil {
 	}
 
 	/**
-	 * ¸ù¾İ»»ĞĞ·ûÖØĞÂÉèÖÃĞĞ¸ß,ÓĞ¶àÉÙ¸ö»»ĞĞ·û,¸ß¶È¾Í³ËÒÔ»»ĞĞ·û¸öÊı
+	 * æ ¹æ®æ¢è¡Œç¬¦é‡æ–°è®¾ç½®è¡Œé«˜,æœ‰å¤šå°‘ä¸ªæ¢è¡Œç¬¦,é«˜åº¦å°±ä¹˜ä»¥æ¢è¡Œç¬¦ä¸ªæ•°
 	 * @param sourceRow
 	 * @param cellContent
 	 * @author chenyiqiang
-	 * @date 2016Äê11ÔÂ19ÈÕ
+	 * @date 2016å¹´11æœˆ19æ—¥
 	 */
 	public static void calcAndSetRowHeigt(HSSFRow sourceRow, String cellContent) {
 		if (StringUtils.isNotEmpty(cellContent)) {
