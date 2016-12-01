@@ -1,16 +1,19 @@
 package com.yee.aop.log;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-
+import com.yee.authority.dao.ConfigDao;
+import com.yee.authority.vo.OperateLogVo;
+import com.yee.authority.vo.UserVo;
+import com.yee.util.AppUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * AOP注解操作日志
@@ -40,7 +43,7 @@ public class OperateLogAspect{
 			vo.setOperateType(operateType);
 			vo.setOperateCategoryType(cateGoryType);
 			vo.setIp(ip);
-			((ConfigDao)AppUtil.getBean("configDao")).saveOperateLogInfo(vo);
+			((ConfigDao) AppUtil.getBean("configDao")).saveOperateLogInfo(vo);
 		}
 	}  
 }
