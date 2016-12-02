@@ -19,8 +19,8 @@ import java.io.IOException;
  * AOP注解操作日志
  *
  */
-@Aspect //该注解标示该类为切面类 
-@Component //注入依赖
+@Aspect // 该注解标示该类为切面类
+@Component // 注入依赖
 public class OperateLogAspect{
     
 	@After("within(com.mis..*||org.mis_mcs..*) && @annotation(trv)") 
