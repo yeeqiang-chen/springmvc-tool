@@ -178,4 +178,3 @@ SELECT STARTDATE FROM EMP WHERE STARTDATE  <= TO_CHAR('20160101','YYYYMMDD')
 避免使用!=或＜＞、IS NULL或IS NOT NULL、IN ，NOT IN等这样的操作符,因为这会使系统无法使用索引,而只能直接搜索表中的数据。例如:
 SELECT id FROM employee WHERE id != 'B%'
 优化器将无法通过索引来确定将要命中的行数,因此需要搜索该表的所有行。
-
